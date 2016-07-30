@@ -67,7 +67,7 @@ describe('pos', () => {
         unit: '袋',
         price: 4.50,
         count:3,
-        totalPrice:13.5,
+        totalPrice:9,
         save:4.5
       }];
     let coustonPrice=main.getCoustomPrices(customItems);
@@ -90,14 +90,56 @@ describe('pos', () => {
         unit: '袋',
         price: 4.50,
         count:3,
-        totalPrice:13.5,
+        totalPrice:9,
         save:4.5
       }];
     let expectText={pay:46.5,save:4.5};
     let allPrice=main.getAllPrice(customPrice);
     expect(allPrice).toEqual(expectText);
   });
- /* it('should print text', () => {
+  it("6:getCustomRececipt",() =>
+  {
+    let customPrice= [  {
+      barcode: 'ITEM000003',
+      name: '荔枝',
+      unit: '斤',
+      price: 15.00,
+      count:2.5,
+      totalPrice:37.5,
+       save:0
+    },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50,
+        count:3,
+        totalPrice:9,
+        save:4.5
+      }];
+    let allPrice={pay:46.5,save:4.5};
+    let promotionItems= [  {
+      name: '荔枝',
+      unit: '斤',
+      price: 15.00,
+      count:2.5,
+      totalPrice:37.5
+    },
+      {
+        name: '方便面',
+        unit: '袋',
+        price: 4.50,
+        count:3,
+        totalPrice:9
+      }];
+    let reccipt=main.getRerecipt(customPrice,allPrice);
+    let expectText={
+      promotionItems,
+      allPrice
+    };
+    expect(reccipt).toEqual(expectText);
+  });
+  it('should print text', () => {
 
     const tags = [
       'ITEM000001',
@@ -124,5 +166,5 @@ describe('pos', () => {
 **********************`;
 
     expect(console.log).toHaveBeenCalledWith(expectText);
-  });*/
+  });
 });

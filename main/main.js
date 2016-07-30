@@ -1,6 +1,18 @@
 'use strict';
 let _=require("lodash");
 let Items=require("../spec/fixtures");
+function printReceipt(tags){
+  let formatItem=getFormatItems(tags);
+  let countItem=getCounstomItems(formatItem);
+  let CounstomItems=getCounstomItems(countItem);
+  let coustomPrices=getCoustomPrices(CounstomItems);
+  let allPrice=getAllPrice(coustomPrices);
+  let recepit=getRerecipt(coustomPrices,allPrice);
+  let list=list(recepit);
+  console.log(list);
+  return list;
+
+}
 function getFormatItems(tags) {
   let formatItem=_.map(tags,(tag)=>
   {
@@ -56,7 +68,7 @@ function getCoustomPrices(customItems) {
     {
       save=parseFloat(count*price/3);
     }
-   return {barcode,name,unit,price,count,totalPrice,save};
+   return {barcode,name,unit,price,count,totalPrice:totalPrice-save,save};
   }));
 
 }
@@ -64,10 +76,36 @@ function getAllPrice(customPrices) {
   let pay=_.sumBy((customPrices),({totalPrice})=> {return totalPrice;});
   let save=_.sumBy(customPrices,({save}) =>{ return save});
   return{
-    pay:pay-save,
+    pay,
     save
   }
 }
+function getRerecipt(customPrices,allPrice) {
+  let promotionItems=_.map(customPrices,({name,unit,price,count,totalPrice}) => {
+    return {name,unit,price,count,totalPrice} });
+
+  return{
+    promotionItems,
+    allPrice
+  }
+
+}
+function list(reccipt) {
+let list=`***<没钱赚商店>收据***`;
+let allItems="";
+  _.map(reccipt.promotionItems,({name,unit,price,count,totalPrice}) =>
+{
+  allItems+=`名称：${name}，数量：${count}${unit}，单价：${price}(元)，小计：${totalPrice}(元)`;
+
+}) ;
+const expectText = `***<没钱赚商店>收据***
+${allItems}
+----------------------
+总计：${reccipt.allPrice.pay}(元)
+节省：${reccipt.allPrice.save}(元)
+**********************`;
+  return expectText;
+}
 module.exports = {
-  getFormatItems,getCount,getCounstomItems,getCoustomPrices,getAllPrice
+  getFormatItems,getCount,getCounstomItems,getCoustomPrices,getAllPrice,getRerecipt
 };
