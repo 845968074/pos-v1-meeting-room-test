@@ -8,6 +8,13 @@ describe('pos', () => {
     let formatItems=main.getFormatItems(tags);
     expect(formatItems).toEqual(expectText);
   });
+  it("getCountItems",() =>
+  {
+    let formatItems=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:1},{barcode: 'ITEM000005',count:2}];
+    let expectText=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:3}];
+    let countItems=main.getCount(formatItems);
+    expect(countItems).toEqual(expectText);
+  });
  /* it('should print text', () => {
 
     const tags = [
