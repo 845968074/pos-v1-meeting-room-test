@@ -60,6 +60,14 @@ function getCoustomPrices(customItems) {
   }));
 
 }
+function getAllPrice(customPrices) {
+  let pay=_.sumBy((customPrices),({totalPrice})=> {return totalPrice;});
+  let save=_.sumBy(customPrices,({save}) =>{ return save});
+  return{
+    pay:pay-save,
+    save
+  }
+}
 module.exports = {
-  getFormatItems,getCount,getCounstomItems,getCoustomPrices
+  getFormatItems,getCount,getCounstomItems,getCoustomPrices,getAllPrice
 };

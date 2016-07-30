@@ -73,6 +73,30 @@ describe('pos', () => {
     let coustonPrice=main.getCoustomPrices(customItems);
     expect(coustonPrice).toEqual(expectText);
   });
+  it("5:getCustomAllPrice",() =>
+  {
+    let customPrice= [  {
+      barcode: 'ITEM000003',
+      name: '荔枝',
+      unit: '斤',
+      price: 15.00,
+      count:2.5,
+      totalPrice:37.5,
+      save:0
+    },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50,
+        count:3,
+        totalPrice:13.5,
+        save:4.5
+      }];
+    let expectText={pay:46.5,save:4.5};
+    let allPrice=main.getAllPrice(customPrice);
+    expect(allPrice).toEqual(expectText);
+  });
  /* it('should print text', () => {
 
     const tags = [
