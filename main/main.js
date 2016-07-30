@@ -37,6 +37,13 @@ function getCount(formateItems,allItems) {
   });
   return countItems;
 }
+function getCounstomItems(countItems) {
+  return _.map(countItems,({barcode,count}) =>
+  {
+    let temp=getCompare(Items.loadAllItems(),barcode);
+    return {barcode,name:temp.name,unit:temp.unit,price:temp.price,count:count};
+  })
+}
 module.exports = {
-  getFormatItems,getCount
+  getFormatItems,getCount,getCounstomItems
 };

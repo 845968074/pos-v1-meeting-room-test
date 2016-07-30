@@ -1,19 +1,76 @@
 'use strict';
 let main=require("../main/main");
 describe('pos', () => {
-  it("getFormateCart",() =>
+  it("1:getFormateCart",() =>
   {
     let tags=['ITEM000003-2.5', 'ITEM000005', 'ITEM000005-2',];
     let expectText=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:1},{barcode: 'ITEM000005',count:2}]
     let formatItems=main.getFormatItems(tags);
     expect(formatItems).toEqual(expectText);
   });
-  it("getCountItems",() =>
+  it("2:getCountItems",() =>
   {
     let formatItems=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:1},{barcode: 'ITEM000005',count:2}];
     let expectText=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:3}];
     let countItems=main.getCount(formatItems);
     expect(countItems).toEqual(expectText);
+  });
+  it("3:getCounstomItems",() =>
+  {
+    let countItems=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:3}];
+    let expectText=[  {
+      barcode: 'ITEM000003',
+      name: '荔枝',
+      unit: '斤',
+      price: 15.00,
+      count:2.5
+    },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50,
+        count:3
+      }];
+    let CounstomItems=main.getCounstomItems(countItems);
+    expect(CounstomItems).toEqual(expectText);
+  });
+  it("4:getItemsPrice",() =>
+  {
+    let customItems=[  {
+      barcode: 'ITEM000003',
+      name: '荔枝',
+      unit: '斤',
+      price: 15.00,
+      count:2.5
+    },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50,
+        count:3
+      }];
+    let expectText=
+      [  {
+      barcode: 'ITEM000003',
+      name: '荔枝',
+      unit: '斤',
+      price: 15.00,
+      count:2.5,
+        totallPrice:37.5,
+        save:0
+    },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50,
+        count:3
+        totallPrice:
+      }];
+    let CounstomItems=main.getCounstomItems(countItems);
+    expect(CounstomItems).toEqual(expectText);
   });
  /* it('should print text', () => {
 
