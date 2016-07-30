@@ -44,6 +44,22 @@ function getCounstomItems(countItems) {
     return {barcode,name:temp.name,unit:temp.unit,price:temp.price,count:count};
   })
 }
+function getCoustomPrices(customItems) {
+  let promotions=_.find(Items.loadPromotions(),(promotionsItems)=> promotionsItems.type==='BUY_TWO_GET_ONE_FREE');
+  //console.log(customItems);
+  return _.map(customItems,(({barcode,name,unit,price,count})=>
+  {
+    let hasPromotions=promotions.barcodes.includes(barcode)&&count>2;
+    let totalPrice=count*price;
+    let save=0;
+    if(hasPromotions)
+    {
+      save=parseFloat(count*price/3);
+    }
+   return {barcode,name,unit,price,count,totalPrice,save};
+  }));
+
+}
 module.exports = {
-  getFormatItems,getCount,getCounstomItems
+  getFormatItems,getCount,getCounstomItems,getCoustomPrices
 };

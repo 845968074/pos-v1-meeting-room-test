@@ -1,0 +1,9 @@
+[ Object({ barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, totalPrice: 37.5, save: 0 }), Object({ barcode: 'ITEM005', name: '方便面', unit: '袋', price: 4.5, count: 3, totalPrice: 13.5, save: 12.5 }) ]
+[ Object({ barcode: 'ITEM000003', name: '荔枝', un', price: 15, count: 2.5, totallPrice: 37.5, save: 0 }), Object({ barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, totallPric3.5, save: 4.5 }) ].
+
+
+[ Object({ barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, totallPrice: 37.5, e: 0 }), Object({ barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, totallPrice: 13.5, save: 4.5 }) ].
+
+
+[ Object({ barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, totalPrice: 37.5, save: 0 }), Object({ barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, totalPrice: 13.5, save: 12.5 }) ]
+[ Object({ barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, totalPrice: 37.5, save: 0 }), Object({ barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, totalPrice: 13.5, save: 4.5 }) ].

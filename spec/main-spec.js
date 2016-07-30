@@ -58,7 +58,7 @@ describe('pos', () => {
       unit: '斤',
       price: 15.00,
       count:2.5,
-        totallPrice:37.5,
+        totalPrice:37.5,
         save:0
     },
       {
@@ -66,11 +66,12 @@ describe('pos', () => {
         name: '方便面',
         unit: '袋',
         price: 4.50,
-        count:3
-        totallPrice:
+        count:3,
+        totalPrice:13.5,
+        save:4.5
       }];
-    let CounstomItems=main.getCounstomItems(countItems);
-    expect(CounstomItems).toEqual(expectText);
+    let coustonPrice=main.getCoustomPrices(customItems);
+    expect(coustonPrice).toEqual(expectText);
   });
  /* it('should print text', () => {
 
