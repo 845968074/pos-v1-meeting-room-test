@@ -3,14 +3,15 @@ let _=require("lodash");
 let Items=require("../spec/fixtures");
 function printReceipt(tags){
   let formatItem=getFormatItems(tags);
-  let countItem=getCounstomItems(formatItem);
-  let CounstomItems=getCounstomItems(countItem);
+  let countItem=getCount(formatItem);
+    let customs=getCounstomItems(countItem);
+  let CounstomItems=getCounstomItems(customs);
   let coustomPrices=getCoustomPrices(CounstomItems);
   let allPrice=getAllPrice(coustomPrices);
   let recepit=getRerecipt(coustomPrices,allPrice);
-  let list=list(recepit);
-  console.log(list);
-  return list;
+  let lists=list(recepit);
+  console.log(lists);
+  return lists;
 
 }
 function getFormatItems(tags) {
@@ -34,7 +35,7 @@ function getCompare(array,barcode) {
   })
 }
 //let allItems=
-function getCount(formateItems,allItems) {
+function getCount(formateItems) {
   let countItems=[];
    _.map(formateItems,({barcode,count})=>
   {
@@ -66,7 +67,7 @@ function getCoustomPrices(customItems) {
     let save=0;
     if(hasPromotions)
     {
-      save=parseFloat(count*price/3);
+      save=parseFloat(parseInt(count/3)*price);
     }
    return {barcode,name,unit,price,count,totalPrice:totalPrice-save,save};
   }));
@@ -91,21 +92,21 @@ function getRerecipt(customPrices,allPrice) {
 
 }
 function list(reccipt) {
-let list=`***<没钱赚商店>收据***`;
 let allItems="";
   _.map(reccipt.promotionItems,({name,unit,price,count,totalPrice}) =>
 {
-  allItems+=`名称：${name}，数量：${count}${unit}，单价：${price}(元)，小计：${totalPrice}(元)`;
+  allItems+= `
+名称：${name}，数量：${count}${unit}，单价：${price.toFixed(2)}(元)，小计：${totalPrice.toFixed(2)}(元)`;
 
 }) ;
 const expectText = `***<没钱赚商店>收据***
 ${allItems}
 ----------------------
-总计：${reccipt.allPrice.pay}(元)
-节省：${reccipt.allPrice.save}(元)
+总计：${reccipt.allPrice.pay.toFixed(2)}(元)
+节省：${reccipt.allPrice.save.toFixed(2)}(元)
 **********************`;
   return expectText;
 }
 module.exports = {
-  getFormatItems,getCount,getCounstomItems,getCoustomPrices,getAllPrice,getRerecipt
+  getFormatItems,getCount,getCounstomItems,getCoustomPrices,getAllPrice,getRerecipt,printReceipt,list
 };
