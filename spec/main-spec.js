@@ -1,8 +1,14 @@
 'use strict';
-
+let main=require("../main/main");
 describe('pos', () => {
-
-  it('should print text', () => {
+  it("getFormateCart",() =>
+  {
+    let tags=['ITEM000003-2.5', 'ITEM000005', 'ITEM000005-2',];
+    let expectText=[{barcode:'ITEM000003',count:2.5},{barcode:'ITEM000005',count:1},{barcode: 'ITEM000005',count:2}]
+    let formatItems=main.getFormatItems(tags);
+    expect(formatItems).toEqual(expectText);
+  });
+ /* it('should print text', () => {
 
     const tags = [
       'ITEM000001',
@@ -29,5 +35,5 @@ describe('pos', () => {
 **********************`;
 
     expect(console.log).toHaveBeenCalledWith(expectText);
-  });
+  });*/
 });
